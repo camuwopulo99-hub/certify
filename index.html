@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Certificate Automation Manager</title>
+<meta name="theme-color" content="#060a16">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header class="top"><div class="wrap">
+ <div class="t1">
+  <div class="brand"><div class="logo" data-i="file"></div><div><h1>Class Certificate Automation Manager <span class="pill" id="rosterpill"><span class="cnt">0</span> Roster</span></h1><div class="sub">Direct Drive &amp; Sheets Automated Reconciliation Engine</div></div></div>
+  <div class="ok hide" id="restored"><span data-i="ok"></span><span data-i="batt"></span>Live: connected to Supabase — changes sync in real time.</div>
+ </div>
+ <div class="t2">
+  <a class="tile bl fac" id="lnkDrive" target="_blank" rel="noopener" data-i="folder"><span>Drive<br>Folder</span></a>
+  <div class="tile dark fac" data-i="clock"><span>Synced<br><b id="synced">18:54</b></span><span id="autolbl" style="margin-left:18px;color:#f59e0b">• Auto<br>off</span></div>
+  <button class="tile fill fac" id="sync" data-i="sync"><span>Sync<br>Now</span></button>
+  <a class="tile gr fac" id="lnkSheet" target="_blank" rel="noopener" data-i="file"><span>Sheet<br>Proof</span></a>
+  <button class="tile in fac" data-act="export" data-i="dl"><span>Export<br>Center</span></button>
+  <div class="mu">Full Dark<br>Mode</div><button class="sw" id="theme" aria-label="Toggle dark mode"></button>
+  <button class="tile fill2" id="inst" data-i="dl"><span>Install<br>App</span></button>
+    <div class="user"><div class="who"><div class="av" id="uav">?</div><div><span id="uname">Signed out</span><small id="urole"></small></div></div><button class="ib" data-act="signout" style="background:none;border:0;font-size:22px;color:var(--mu)" data-i="out"></button></div>
+ </div>
+</div></header>
+<div class="tabsbar fac"><div class="wrap"><div class="tabs">
+ <button class="tab on" data-view="dash" data-i="folder">Dashboard &amp; Class Roster (<span class="cnt">0</span>)</button>
+ <button class="tab" data-view="review" data-i="warn">Needs Review <span class="bd" id="nrv">0</span></button>
+ <button class="tab" data-view="alerts" data-i="mail">Alerts</button>
+ <button class="tab" data-view="audit" data-i="file">Audit Logs</button>
+ <button class="sys" data-act="settings" data-i="gear">System Controls &amp; Settings</button>
+</div></div></div>
+<div class="wrap"><main id="top" class="fac"><div class="view" id="v-dash">
+ <section class="card" id="pwa">
+  <div class="row sb" style="align-items:flex-start;gap:30px">
+   <div class="f1">
+    <div class="row" style="gap:10px"><span class="tag" data-i="spark">Progressive Web App (PWA) Ready</span><span class="tag" data-i="zap">Offline-First Sync</span><span class="tag" data-i="globe">Cross-Platform (Android / iOS / Desktop)</span></div>
+    <h2 style="margin-top:20px">Install Certifyx Application on Your Device</h2>
+    <p class="lg">Get a full native application experience without app store downloads. Features dedicated window, desktop/mobile launcher icon, offline caching, and instant launch.</p>
+    <div class="row" style="margin-top:24px"><div class="feat" data-i="mon">Standalone Window</div><div class="feat" data-i="shield">Instant Offline Access</div><div class="feat" data-i="phone">Home Screen Launcher</div></div>
+   </div>
+   <div style="width:292px;display:flex;flex-direction:column;gap:12px;align-items:stretch">
+    <button class="big" id="inst2" data-i="dl">Install Native App</button>
+    <div class="row" style="flex-wrap:nowrap"><button class="ghost" data-t="Open browser menu → Install app / Add to Home screen" data-i="help" style="flex:1;justify-content:center">Instructions</button></div>
+    <button id="dismiss" style="border:0;background:none;color:var(--mu);font-size:13px;margin-top:6px">Dismiss this banner</button>
+   </div>
+  </div>
+ </section>
+ <section class="card">
+  <div class="cg">
+   <div>
+    <div class="row"><span class="tag mo" data-i="shield" style="font-weight:700;letter-spacing:.5px;color:#34e0a8;border-color:#0e6a52;background:#082a24">3-WAY REQUIREMENT MILESTONE</span><span style="color:var(--mu);font-size:14px">(Drive Uploaded + Sheet Updated + Submitted)</span></div>
+    <div class="pct" id="pct" style="margin-top:20px"></div>
+    <p id="pend" style="margin-top:18px;color:var(--tx);opacity:.9"></p>
+   </div>
+   <div class="rings"><div id="ring"></div><div><small>Compliance Rings</small><div id="rl"></div></div></div>
+   <button class="rm" data-act="remind" data-i="mail"><span>Remind <span class="cnt">0</span><br>Defaulters</span></button>
+  </div>
+  <div style="border-top:1px solid var(--bd);margin-top:26px;padding-top:22px">
+   <div class="row sb mono" style="font-size:14px;color:var(--mu)"><span>Progress Breakdown:</span><span id="fully"></span></div>
+   <div class="bar"><i id="pbar"></i></div>
+   <div class="st" id="st"></div>
+  </div>
+ </section>
+ <section class="card" id="hub">
+  <div class="row sb"><div class="row" style="gap:18px"><div class="ico" data-i="layers"></div><div><h3 style="font-size:24px">Drive Organization &amp; Export Hub <span class="tag mo" style="font-size:12px;padding:5px 10px;margin-left:8px">Dashboard Integrated</span></h3><p style="margin-top:4px">Reorganize files into new Google Drive folders without altering filenames and export multi-format workbooks</p></div></div>
+   <div class="seg"><button class="on" data-i="layers">Drive Exporter</button><button data-t="Export formats: CSV, XLSX, PDF" data-i="dl">All Export Formats</button></div></div>
+  <div class="card sec" style="margin-top:22px;border-radius:18px"><div class="row sb"><div class="row" style="gap:16px"><div class="ico sm" style="background:#08261f;border-color:#0e6a52;color:#34e0a8" data-i="shield"></div><div><b style="font-size:18px">Exact Existing Filenames Preserved</b> <span class="tag mo" style="padding:3px 8px;font-size:11px;color:#34e0a8;border-color:#0e6a52;background:#082a24">Zero Renaming</span><p style="font-size:14px">When exporting to your new Google Drive destination, original file names remain 100% untouched. No roll number prefixes or random IDs will be added to the files.</p></div></div><button class="ghost" data-t="Live proof opened" data-i="file">Inspect Live Proof</button></div></div>
+  <div class="card sec" style="margin-top:20px;border-radius:18px;padding:24px">
+   <div class="row sb"><div class="row" style="gap:16px"><div class="ico sm" data-i="layers"></div><div><b style="font-size:20px">Drive Category Exporter</b> <span class="tag" style="padding:3px 10px;font-size:12px">Spreadsheet Synced</span><p style="font-size:14px">Create structured folders in Google Drive matching the spreadsheet <b style="color:var(--tx)">Certificate</b> column</p></div></div><span class="tag" style="color:var(--tx)" data-i="shield">Single Unified Drive Parent Folder</span></div>
+   <div class="mono" style="margin:22px 0 4px;font:700 14px 'Space Grotesk';letter-spacing:.6px;display:flex;gap:8px;align-items:center;color:var(--mu)" data-i="layers">GOOGLE DRIVE FOLDER STRUCTURE LAYOUT</div>
+   <div class="opts">
+    <button class="opt on" data-lay="1"><b data-i="spark">By Certificate Category (Recommended)</b><span class="mono">📁 Participations/ , 📁 Courses/ , 📁 Hackathons/ ...</span></button>
+    <button class="opt" data-lay="2"><b>Category → Student Subfolders</b><span class="mono">📁 Participations / 📁 25A31A05GB_Name / 📄 File.pdf</span></button>
+    <button class="opt" data-lay="3"><b>Student → Category Subfolders</b><span class="mono">📁 25A31A05GB_Name / 📁 Participations / 📄 File.pdf</span></button>
+    <button class="opt" data-lay="4"><b>Student Folders Only</b><span class="mono">📁 25A31A05GB_Name / 📄 File.pdf</span></button>
+   </div>
+   <div class="card sec" style="margin-top:16px;border-radius:16px;background:#0a1230"><div style="font:700 14px 'Space Grotesk';letter-spacing:.6px;color:var(--mu)">DETECTED CATEGORIES TO BE CREATED ON GOOGLE DRIVE:</div><div class="cats" id="cats"></div></div>
+  </div>
+ </section>
+ <section class="card dup sec" id="dups" style="padding:22px 26px">
+  <div class="row sb"><div class="row" style="gap:16px"><div class="ico sm" style="background:#3a0b1f;border-color:#7f1d3f;color:#fb7195" data-i="copy"></div><div><b style="font-size:19px"><span id="dupn">0</span> Duplicate Certificate Submissions Detected</b> <span class="tag" style="padding:3px 10px;font-size:12px;color:#fb7195;border-color:#7f1d3f;background:#3a0b1f">Action Required</span><p style="font-size:15px">Multiple certificate uploads share the same student &amp; category. Clean up redundant copies with one click.</p></div></div>
+   <div class="row"><button class="red" data-act="dups" data-i="trash">Remove All Duplicates (<span id="dupn2">0</span>)</button><button class="ghost" data-act="review">Review in Queue</button></div></div>
+ </section>
+ <section class="card sec" style="padding:20px 24px">
+  <div class="row sb"><div class="row" style="gap:16px"><div class="ico sm" data-i="users"></div><div><b style="font-size:20px">Active Class Roster</b> <span class="tag" style="padding:3px 10px;font-size:13px"><span class="cnt">0</span> Students</span> <span class="tag" style="padding:3px 10px;font-size:12px;color:#34e0a8;border-color:#0e6a52;background:#082a24" data-i="shield">Permanently Synced (Local &amp; Database)</span><p style="font-size:15px">Permanently register students or bulk-import entire class rosters via copy-paste or CSV.</p></div></div>
+   <div class="row"><button class="btn b" data-act="addstu" data-i="plus">Add Student</button><button class="btn g" data-act="batch" data-i="users">Batch Import Students</button><button class="btn o" data-act="manage" data-i="file">Manage Roster</button></div></div>
+ </section>
+ <section class="card sec" style="padding:22px 26px">
+  <div style="font:700 15px 'Space Grotesk';letter-spacing:.5px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span data-i="filter" style="display:flex;gap:8px;align-items:center">QUICK SYNCHRONIZATION ISSUE FILTERS:</span><span class="mono" style="font-size:12px;color:var(--mu);font-weight:400">Click chip to filter table visibility</span></div>
+  <div class="chips" id="fch"></div>
+ </section>
+ <section class="card sec" style="padding:16px 22px">
+  <div class="row sb"><div class="row" style="gap:12px"><span data-i="spark" style="color:#7aa8ff"></span><b>Classroom Roster Layout Mode:</b><span class="sub" style="font-size:14px">Choose spatial grid or tabular audit list</span></div>
+   <div class="seg"><button class="on" data-mode="matrix" data-i="compass">🧭 Interactive Matrix (Seating Map &amp; HUD)</button><button data-mode="table" data-i="file">📋 Detailed Audit Table</button></div></div>
+ </section>
+ <section class="card" style="padding:26px">
+  <div class="row sb"><div class="row" style="gap:16px"><div class="ico sm" data-i="compass" style="border-radius:50%;width:54px;height:54px"></div><div><h3 style="font-size:24px">Interactive Classroom Matrix <span class="tag" id="seatsub" style="font-size:14px;padding:4px 12px;margin-left:6px"></span></h3><p style="margin-top:4px">Visual seat-by-seat compliance status chart with real-time status glows and Mini-HUD inspection</p></div></div>
+   <div class="seg"><button class="on" data-vw="desk" data-i="grid">Classroom Desk Map</button><button data-vw="honey" data-i="grid">Honeycomb Grid</button><button data-vw="tiles" data-i="grid">Seat Tiles</button></div></div>
+  <div class="row" style="margin-top:20px;border-top:1px solid var(--bd);padding-top:18px"><div class="srch"><span data-i="search"></span><input id="q" placeholder="Search roll number (e.g. 0501) or name…"></div><div class="chips" id="mch" style="margin:0"></div></div>
+  <div id="mx" class="seats desk"></div><div id="tb"></div>
+ </section>
+</div><div class="view hidden" id="v-review"></div><div class="view hidden" id="v-alerts"></div><div class="view hidden" id="v-audit"></div></main></div>
+<div class="wrap stu"><main id="stu"></main></div>
+<div id="gate"></div><div id="modal"></div>
+<div class="foot"><i></i><span data-i="wifi">Online • Connected to Cloud</span></div>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body></html>
